@@ -1,0 +1,133 @@
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        MainLayout:
+            size_hint_y: 1
+            
+            MainScreenManager:
+                id: main_screen_manager
+
+                PlaylistScreen:
+                    name: 'playlist'
+
+                TracklistScreen:
+                    name: 'tracklist'
+
+        BoxLayout:
+            height: self.minimum_height
+            size_hint_y: None
+            orientation: 'horizontal'
+
+            Button:
+                text: 'Playlist'
+                on_release: root.switch_screen('playlist')
+
+            Button:
+                text: 'Tracklist'
+                on_release: root.switch_screen('tracklist')
+
+<PlaylistScreen>:
+    on_pre_enter: playlist_view.refresh_recycleview()
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: 1
+    
+        PlaylistView:
+            id: playlist_view
+
+            size_hint_y: 1 
+
+<TracklistScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: 1
+
+        TextInput:
+            id: filter_input
+            hint_text: "Filter by artist, title, or record"
+            size_hint_y: None
+            height: '40dp'
+
+        TracklistView:
+            id: tracklist_view  
+            size_hint_y: 1 
+
+<Button>:
+    height: self.texture_size[1]
+    padding: (5, 5)
+    size_hint_y: None
+
+<Label>:
+    text_size: self.size
+    halign: 'center'
+    valign: 'middle'
+
+<TracklistView>:
+    viewclass: 'TracklistItem'  
+
+    RecycleBoxLayout:
+        default_size: None, None
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        padding: (10, 10)
+        spacing: 10  
+
+<TracklistItem>:
+    artist: root.artist
+    title: root.title
+    record: root.record
+
+    orientation: 'vertical'
+
+    Label:
+        text: f"Artist: {root.artist}"
+    
+    Label:
+        text: f"Title: {root.title}"
+    
+    Label:
+        text: f"Record: {root.record}"
+
+    Button:
+        text: 'Add to playlist'
+        size_hint: (None, None) 
+        size: '150dp', '40dp'
+
+        on_release: root.add_to_playlist(root)
+        
+<PlaylistView>:
+    viewclass: 'PlaylistItem'
+
+    RecycleBoxLayout:
+        default_size: None, None
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        padding: (10, 10)
+        spacing: 10  
+
+<PlaylistItem>:
+    artist: root.artist
+    title: root.title
+    record: root.record
+
+    orientation: 'vertical'
+
+    Label:
+        text: f"Artist: {root.artist}"      
+
+    Label:
+        text: f"Title: {root.title}"
+
+    Label:
+        text: f"Record: {root.record}"
+
+    Button
+        text: 'Remove'
+
+        on_release: root.remove_from_playlist(root)

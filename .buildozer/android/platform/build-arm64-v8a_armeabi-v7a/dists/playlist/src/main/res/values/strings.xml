@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Playlist</string>
+    <string name="private_version">6077e1ba4b721d40eb80187032d4c6e5d24e8d03</string>
+    <string name="presplash_color">#000000</string>
+    <string name="urlScheme">kivy</string>
+</resources>
