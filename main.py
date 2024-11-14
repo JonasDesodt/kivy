@@ -2,7 +2,8 @@ from kivy.app import App
 from app_container import AppContainer
 from views.main_screen import MainScreen
 
-# from create_database import create_and_seed_database
+from create_database import *
+
 # create_and_seed_database()
     
 class PlaylistApp(App):

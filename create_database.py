@@ -24,6 +24,8 @@ def create_and_seed_database():
     session.add_all([childSupport, gooseSteppin, noRemark, deathSoundBlues, wildHorses])
     session.commit()
 
+    session.flush()
+
     relationship1 = TrackRelationship(track_id1=noRemark.track_id, track_id2=deathSoundBlues.track_id)
 
     session.add_all([relationship1])

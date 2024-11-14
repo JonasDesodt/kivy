@@ -5,9 +5,14 @@ from db.base import Base
 class TrackRelationship(Base):
     __tablename__ = 'track_relationship'
     
-    track_id1 = Column(Integer, ForeignKey('track.track_id'), primary_key=True)
-    track_id2 = Column(Integer, ForeignKey('track.track_id'), primary_key=True)
+    track_relationship_id = Column(Integer, primary_key=True)
+
+    # track_id1 = Column(Integer, ForeignKey('track.track_id'), primary_key=True)
+    # track_id2 = Column(Integer, ForeignKey('track.track_id'), primary_key=True)
     
+    track_id1 = Column(Integer, ForeignKey('track.track_id'))
+    track_id2 = Column(Integer, ForeignKey('track.track_id'))
+
     track1 = relationship('Track', foreign_keys=[track_id1], back_populates='related_tracks')
     track2 = relationship('Track', foreign_keys=[track_id2], back_populates='related_to_tracks')
 
