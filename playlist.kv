@@ -1,11 +1,14 @@
+#:import PlaylistScreen views.playlist_screen.PlaylistScreen
+#:import TracklistScreen views.tracklist_screen.TracklistScreen
+
 <MainScreen>:
     BoxLayout:
         orientation: 'vertical'
 
-        MainLayout:
+        BoxLayout:
             size_hint_y: 1
             
-            MainScreenManager:
+            ScreenManager:
                 id: main_screen_manager
 
                 PlaylistScreen:
@@ -49,6 +52,8 @@
             hint_text: "Filter by artist, title, or record"
             size_hint_y: None
             height: '40dp'
+
+            on_text: tracklist_view.filter_tracks(self.text)
 
         TracklistView:
             id: tracklist_view  
