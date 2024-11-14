@@ -2,7 +2,7 @@ from kivy.uix.recycleview import RecycleView
 from dependency_injector.wiring import inject, Provide
 from sqlalchemy.orm import sessionmaker, joinedload
 from app_container import AppContainer
-from create_database import Track
+from models.track_model import Track
 
 class TracklistView(RecycleView):
     @inject

@@ -2,7 +2,7 @@ from kivy.uix.recycleview import RecycleView
 from dependency_injector.wiring import inject, Provide
 from sqlalchemy.orm import sessionmaker, joinedload
 from app_container import AppContainer
-from create_database import PlaylistEntry
+from models.playlist_entry_model import PlaylistEntry
 
 class PlaylistView(RecycleView):
     @inject

@@ -2,7 +2,7 @@ from kivy.uix.boxlayout import BoxLayout
 from dependency_injector.wiring import inject, Provide
 from sqlalchemy.orm import sessionmaker
 from app_container import AppContainer
-from create_database import PlaylistEntry
+from models.playlist_entry_model import PlaylistEntry
 
 class TracklistItem(BoxLayout):   
     @inject
