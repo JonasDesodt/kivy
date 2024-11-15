@@ -66,17 +66,19 @@
             size_hint_y: 1 
 
 <SuggestionlistScreen>
-    on_pre_enter: self.fetch()
+    on_pre_enter: 
+        self.fetch()
+        suggestionlist_view.data = self.data
 
     BoxLayout:
         orientation: 'vertical'
         size_hint_y: 1
 
-    SuggestionlistView:
-        id: suggestionlist_view
-        data: root.data
+        SuggestionlistView:
+            id: suggestionlist_view
+            data: root.data
 
-        size_hint_y: 1 
+            size_hint_y: 1 
 
 <Button>:
     height: self.texture_size[1]

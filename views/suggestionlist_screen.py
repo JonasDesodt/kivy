@@ -10,6 +10,8 @@ class SuggestionlistScreen(Screen):
         super(SuggestionlistScreen, self).__init__(**kwargs)
 
         self.session = session_factory()
+        
+        self.id = 0
 
         self.data = [
             # {"artist": "Artist 1", "title": "Title 1", "record": "Record 1"},
@@ -25,9 +27,11 @@ class SuggestionlistScreen(Screen):
             .all()
         )
 
-        # Now `suggestions` is a list of TrackRelationship objects, not dictionaries
         self.data = [{'artist': tr.track2.artist, 'title': tr.track2.title, 'record': tr.track2.record} for tr in suggestions]
-        self.ids.suggestionlist_view.data = self.data
+      
+        # Now `suggestions` is a list of TrackRelationship objects, not dictionaries
+        # self.data = [{'artist': tr.track2.artist, 'title': tr.track2.title, 'record': tr.track2.record} for tr in suggestions]
+        # self.ids.suggestionlist_view.data = self.data
 
     #  def update_data(self):
     #     playlistEntries = (
