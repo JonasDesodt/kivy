@@ -229,6 +229,11 @@
         on_release: root.add_to_playlist(root)
 
 <CreateTrackView>:
+    on_valid_submit: 
+        artist_input.text = ""
+        title_input.text = ""
+        record_input.text = ""
+
     orientation: 'vertical'
     size_hint_y: 1
 

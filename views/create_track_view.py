@@ -11,6 +11,8 @@ class CreateTrackView(BoxLayout):
 
         self.session = session_factory()
 
+        self.register_event_type('on_valid_submit')        
+
     def create_track(self, artist, title, record):
         if not artist or not artist.strip():
             return
@@ -25,3 +27,9 @@ class CreateTrackView(BoxLayout):
 
         self.session.add(track)
         self.session.commit()        
+    
+        self.dispatch('on_valid_submit')
+
+    def on_valid_submit(self):
+        """Custom event triggered after successful submission."""
+        print("Valid submit event triggered!")
