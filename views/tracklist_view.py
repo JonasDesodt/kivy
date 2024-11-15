@@ -26,6 +26,6 @@ class TracklistView(RecycleView):
         ).all()
 
         self.data = [{'track_id': track.track_id,
-                                'artist': track.artist,
-                                'title': track.title,
-                                'record': track.record} for track in tracks]
+                    'artist': track.artist,
+                    'title': track.title,
+                    'record': track.record} for track in tracks]
