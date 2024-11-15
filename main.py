@@ -15,7 +15,10 @@ class PlaylistApp(App):
                              'views.tracklist_view', 
                              'views.tracklist_item', 
                              'views.playlist_view',
-                             'views.playlist_item'])
+                             'views.playlist_item',
+                             'views.suggestionlist_screen',
+                             'views.suggestionlist_view',
+                             'views.suggestionlist_item'])
 
         return MainScreen()  
     

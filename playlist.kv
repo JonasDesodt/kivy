@@ -1,7 +1,10 @@
 #:import PlaylistScreen views.playlist_screen.PlaylistScreen
+#:import SuggestionlistScreen views.suggestionlist_screen.SuggestionlistScreen
 #:import TracklistScreen views.tracklist_screen.TracklistScreen
 
 <MainScreen>:
+    id: main_screen
+
     BoxLayout:
         orientation: 'vertical'
 
@@ -16,6 +19,9 @@
 
                 TracklistScreen:
                     name: 'tracklist'
+
+                SuggestionlistScreen:
+                    name: 'suggestionlist'
 
         BoxLayout:
             height: self.minimum_height
@@ -58,6 +64,19 @@
         TracklistView:
             id: tracklist_view  
             size_hint_y: 1 
+
+<SuggestionlistScreen>
+    on_pre_enter: self.fetch()
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: 1
+
+    SuggestionlistView:
+        id: suggestionlist_view
+        data: root.data
+
+        size_hint_y: 1 
 
 <Button>:
     height: self.texture_size[1]
@@ -132,7 +151,44 @@
     Label:
         text: f"Record: {root.record}"
 
-    Button
-        text: 'Remove'
+    BoxLayout:
+        orientation: 'horizontal'
 
-        on_release: root.remove_from_playlist(root)
+        Button
+            text: 'Remove'
+
+            on_release: root.remove_from_playlist(root)
+
+        Button 
+            text: 'Suggestions'
+
+            on_release: app.root.switch_screen('suggestionlist', root.track_id)
+
+<SuggestionlistView>:
+    data: root.data
+    viewclass: 'SuggestionlistItem'
+
+    RecycleBoxLayout:
+        default_size: None, None
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+        padding: (10, 10)
+        spacing: 10  
+
+<SuggestionlistItem>
+    artist: root.artist
+    title: root.title
+    record: root.record
+
+    orientation: 'vertical'
+
+    Label:
+        text: f"Artist: {root.artist}"      
+
+    Label:
+        text: f"Title: {root.title}"
+
+    Label:
+        text: f"Record: {root.record}"
