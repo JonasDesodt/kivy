@@ -120,6 +120,7 @@
         spacing: 10  
 
 <TracklistItem>:
+    track_id: root.track_id
     artist: root.artist
     title: root.title
     record: root.record
@@ -135,12 +136,22 @@
     Label:
         text: f"Record: {root.record}"
 
-    Button:
-        text: 'Add to playlist'
-        size_hint: (None, None) 
-        size: '150dp', '40dp'
+    BoxLayout:
+        orientation: 'horizontal'
 
-        on_release: root.add_to_playlist(root)
+        Button:
+            text: 'Add to playlist'
+            size_hint: (None, None) 
+            size: '150dp', '40dp'
+
+            on_release: root.add_to_playlist(root)
+
+        Button:
+            text: 'Delete'
+            size_hint: (None, None) 
+            size: '150dp', '40dp'
+
+            on_release: root.delete_track(root.track_id)
         
 <PlaylistView>:
     viewclass: 'PlaylistItem'

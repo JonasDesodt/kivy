@@ -24,4 +24,4 @@ class CreateTrackView(BoxLayout):
         track = Track(artist = artist, title = title, record = record)
 
         self.session.add(track)
-        self.session.commit()
+        self.session.commit()        

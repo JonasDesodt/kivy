@@ -27,10 +27,11 @@ class TracklistView(RecycleView):
             (Track.record.ilike(f'%{filter_text}%'))
         ).all()
 
-        self.data = [{'track_id': track.track_id,
-                    'artist': track.artist,
-                    'title': track.title,
-                    'record': track.record} for track in tracks]
+        self.update_data()
+        # self.data = [{'track_id': track.track_id,
+        #             'artist': track.artist,
+        #             'title': track.title,
+        #             'record': track.record} for track in tracks]
         
     def update_data(self):
         tracks = self.session.query(Track).all()
@@ -38,7 +39,8 @@ class TracklistView(RecycleView):
         self.data = [{'track_id': track.track_id,
                       'artist': track.artist,
                       'title': track.title,
-                      'record': track.record} for track in tracks]          
+                      'record': track.record,
+                      'update_callback': self.update_data  } for track in tracks]          
 
     def refresh_recycleview(self):
         self.update_data()
