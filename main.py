@@ -10,6 +10,7 @@ class PlaylistApp(App):
     def build(self):
         self.container = AppContainer()
 
+        # registrations to be musked
         self.container.wire(modules=
                             [__name__, 
                              'views.tracklist_view', 
@@ -18,7 +19,8 @@ class PlaylistApp(App):
                              'views.playlist_item',
                              'views.suggestionlist_screen',
                              'views.suggestionlist_view',
-                             'views.suggestionlist_item'])
+                             'views.suggestionlist_item',
+                             'views.create_track_view'])
 
         return MainScreen()  
     

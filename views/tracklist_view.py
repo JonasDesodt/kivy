@@ -11,12 +11,14 @@ class TracklistView(RecycleView):
 
         self.session = session_factory()
 
-        tracks = self.session.query(Track).all()
+        self.update_data()
 
-        self.data = [{'track_id': track.track_id,
-                      'artist': track.artist,
-                      'title': track.title,
-                      'record': track.record} for track in tracks]        
+        # tracks = self.session.query(Track).all()
+
+        # self.data = [{'track_id': track.track_id,
+        #               'artist': track.artist,
+        #               'title': track.title,
+        #               'record': track.record} for track in tracks]        
     
     def filter_tracks(self, filter_text):
         tracks = self.session.query(Track).filter(
@@ -29,3 +31,14 @@ class TracklistView(RecycleView):
                     'artist': track.artist,
                     'title': track.title,
                     'record': track.record} for track in tracks]
+        
+    def update_data(self):
+        tracks = self.session.query(Track).all()
+
+        self.data = [{'track_id': track.track_id,
+                      'artist': track.artist,
+                      'title': track.title,
+                      'record': track.record} for track in tracks]          
+
+    def refresh_recycleview(self):
+        self.update_data()

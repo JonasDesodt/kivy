@@ -1,6 +1,7 @@
 #:import PlaylistScreen views.playlist_screen.PlaylistScreen
 #:import SuggestionlistScreen views.suggestionlist_screen.SuggestionlistScreen
 #:import TracklistScreen views.tracklist_screen.TracklistScreen
+#:import CreateTrackScreen views.create_track_screen.CreateTrackScreen
 
 <MainScreen>:
     id: main_screen
@@ -22,6 +23,9 @@
 
                 SuggestionlistScreen:
                     name: 'suggestionlist'
+
+                CreateTrackScreen:
+                    name: 'createTrack'
 
         BoxLayout:
             height: self.minimum_height
@@ -49,9 +53,16 @@
             size_hint_y: 1 
 
 <TracklistScreen>:
+    on_pre_enter: tracklist_view.refresh_recycleview()
+
     BoxLayout:
         orientation: 'vertical'
         size_hint_y: 1
+
+        Button:
+            text: 'Add track'
+
+            on_release: app.root.switch_screen('createTrack')
 
         TextInput:
             id: filter_input
@@ -74,11 +85,17 @@
         orientation: 'vertical'
         size_hint_y: 1
 
+        Button: 
+            text: 'Add suggestion'
+
         SuggestionlistView:
             id: suggestionlist_view
             data: root.data
 
             size_hint_y: 1 
+
+<CreateTrackScreen>
+    CreateTrackView:
 
 <Button>:
     height: self.texture_size[1]
@@ -199,3 +216,35 @@
         text: 'Add to playlist'
 
         on_release: root.add_to_playlist(root)
+
+<CreateTrackView>:
+    orientation: 'vertical'
+    size_hint_y: 1
+
+    Label:
+        text: "Create track"
+
+    GridLayout:
+        cols: 2
+        spacing: 10
+        height: self.minimum_height
+
+        Label:
+            text: "Artist:"
+        TextInput:
+            id: artist_input
+
+        Label:
+            text: "Title:"
+        TextInput:
+            id: title_input
+
+        Label:
+            text: "Record:"
+        TextInput:
+            id: record_input    
+    Button:
+        text: "Submit"
+
+        on_release: root.create_track(artist_input.text, title_input.text, record_input.text)
+    
