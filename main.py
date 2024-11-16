@@ -19,6 +19,8 @@ class PlaylistApp(App):
                              'views.playlist_item',
                              'views.suggestionlist_screen',
                              'views.suggestionlist_view',
+                             'views.suggestionlist_select',
+                             'views.suggestionlist_select_item',
                              'views.suggestionlist_item',
                              'views.create_track_view'])
 

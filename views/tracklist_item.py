@@ -24,7 +24,7 @@ class TracklistItem(BoxLayout):
     def delete_track(self, id):
         track = self.session.query(Track).filter(Track.track_id == id).first()
 
-        if track:
+        if track:          
             self.session.delete(track)
             self.session.commit()
 
